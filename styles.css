@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-gradient-1: #49dae4;
+    --bg-gradient-2: #148c7e;
+    --bg-gradient-3: #00695c;
+    --hand-hour: #e40d0d; 
+    --hand-minute: #17322f;
+    --hand-second: #17322f;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-gradient-2);
+}
+
+@keyframes animate {
+    0%, 100% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.container {
+    position: relative;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    width: 100%;
+    height: 60px;
+    background: radial-gradient(rgba(0, 0, 0, 0.2), transparent, transparent);
+    border-radius: 50%;
+}
+
+.box {
+    position: relative;
+    z-index: 1;
+    width: 400px;
+    height: 400px;
+    backdrop-filter: blur(25px);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: animate 4s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.clock {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(transparent, rgba(255, 255, 255, 0.2)), url(clock.png);
+    background-size: cover;
+    border-radius: 50%;
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: none;
+    border-right: none;
+    box-shadow: -10px -10px 20px var(--shadow-light), 10px 10px 20px var(--shadow-dark), 0px 40px 50px var(--shadow-dark);
+}
+
+.clock::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 10000;
+}
+
+.hour, .minutes, .second {
+    position: absolute;
+}
+
+.hour, .hr {
+    width: 160px;
+    height: 160px;
+}
+
+.minutes, .min {
+    width: 190px;
+    height: 190px;
+}
+
+.second, .sec {
+    width: 230px;
+    height: 230px;
+}
+
+.hr, .min, .sec {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.hr::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 80px;
+    background: var(--hand-hour);
+    z-index: 11;
+    border-radius: 6px;
+}
+
+.min::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 90px;
+    background: var(--hand-minute);
+    z-index: 12;
+    border-radius: 6px;
+}
+
+.sec::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 150px;
+    background: var(--hand-second);
+    z-index: 12;
+    border-radius: 6px;
+}
